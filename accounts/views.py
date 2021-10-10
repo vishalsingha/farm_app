@@ -5,7 +5,15 @@ from .models import  massage_request
 from django.http import HttpResponseRedirect
 # Create your views here.
 
-
+def massage(request):
+    name = request.POST['Name']
+    phone = request.POST['Phone']
+    email = request.POST['Email']
+    message = request.POST['Message']
+    info = massage_request(name= name, email= email, phone= phone, message= message)
+    info.save()
+    print('info saved')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
